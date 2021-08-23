@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PersonDataManagement
 {
     public class PersonData
     {
+        public static int Choice;
         public static List<Person> list = new List<Person>();
         public void AddPersonData(List<Person> list)
         {
@@ -31,26 +33,42 @@ namespace PersonDataManagement
                 Console.WriteLine("Age :" + data.Age);
             }
         }
+        public void DisplayTopTwoBelow60(List<Person> list)
+        {
+            var persons = list.Where(x => x.Age < 60).Take(2);
+            Console.WriteLine("");
+            foreach (var items in persons)
+            {
+                Console.WriteLine("SSN :" + items.SSN);
+                Console.WriteLine("Name :" + items.Name);
+                Console.WriteLine("Address :" + items.Address);
+                Console.WriteLine("Age :" + items.Age+"\n");
+            }
+        }
         public void DataManagement()
         {
-            int choice;
-            Console.WriteLine("\n1. for inserting record\n2. for display the record");
-            Console.WriteLine("Enter Your choice");
-            choice = Convert.ToInt16(Console.ReadLine());
-            switch (choice)
+            while (Choice != 10)
             {
-                case 1:
-                    AddPersonData(list);
-                    break;
-                case 2:
-                    Display(list);
-                    break;
-                default:
-                    Console.WriteLine("Oops you enter wrong input.. try again...");
-                    break;
+                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n10. for Exit\n");
+                Console.WriteLine("Enter Your choice");
+                Choice = Convert.ToInt16(Console.ReadLine());
+                switch (Choice)
+                {
+                    case 1:
+                        AddPersonData(list);
+                        break;
+                    case 2:
+                        Display(list);
+                        break;
+                    case 3:
+                        DisplayTopTwoBelow60(list);
+                        break;
+                    default:
+                        Console.WriteLine("Oops you enter wrong input.. try again...");
+                        break;
 
+                }
             }
-
         }
     }
 }
