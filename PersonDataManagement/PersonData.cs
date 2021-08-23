@@ -62,11 +62,21 @@ namespace PersonDataManagement
             double average = list.Average(p => p.Age);
             Console.WriteLine("Average is : "+average);
         }
+        public void Check(List<Person> list)
+        {
+            Console.WriteLine("Enter a person Name to check");
+            string name = Console.ReadLine();
+            var data = list.Any(x => x.Name.Equals(name));
+            if (data==true)
+                Console.WriteLine(name + " : is present in list");
+            else
+                Console.WriteLine(name + " : is not present in list");
+        }
         public void DataManagement()
         {
             while (Choice != 10)
             {
-                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n5. for Average Age\n10. for Exit\n");
+                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n5. for Average Age\n6. for checking person present or not in list\n10. for Exit\n");
                 Console.WriteLine("Enter Your choice");
                 Choice = Convert.ToInt16(Console.ReadLine());
                 switch (Choice)
@@ -85,6 +95,9 @@ namespace PersonDataManagement
                         break;
                     case 5:
                         AverageAge(list);
+                        break;
+                    case 6:
+                        Check(list);
                         break;
                     default:
                         Console.WriteLine("Oops you enter wrong input.. try again...");
