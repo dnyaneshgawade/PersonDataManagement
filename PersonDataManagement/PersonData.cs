@@ -57,11 +57,16 @@ namespace PersonDataManagement
                 Console.WriteLine("Age :" + items.Age+"\n");
             }
         }
+        public void AverageAge(List<Person> list)
+        {
+            double average = list.Average(p => p.Age);
+            Console.WriteLine("Average is : "+average);
+        }
         public void DataManagement()
         {
             while (Choice != 10)
             {
-                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n10. for Exit\n");
+                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n5. for Average Age\n10. for Exit\n");
                 Console.WriteLine("Enter Your choice");
                 Choice = Convert.ToInt16(Console.ReadLine());
                 switch (Choice)
@@ -77,6 +82,9 @@ namespace PersonDataManagement
                         break;
                     case 4:
                         DisplayAgeBetween13And18(list);
+                        break;
+                    case 5:
+                        AverageAge(list);
                         break;
                     default:
                         Console.WriteLine("Oops you enter wrong input.. try again...");
