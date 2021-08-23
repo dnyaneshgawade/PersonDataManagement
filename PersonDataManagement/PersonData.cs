@@ -42,6 +42,18 @@ namespace PersonDataManagement
                 Console.WriteLine("SSN :" + items.SSN);
                 Console.WriteLine("Name :" + items.Name);
                 Console.WriteLine("Address :" + items.Address);
+                Console.WriteLine("Age :" + items.Age + "\n");
+            }
+        }
+        public void DisplayAgeBetween13And18(List<Person> list)
+        {
+            var persons = list.Where(x => x.Age > 13 && x.Age < 18);
+            Console.WriteLine("Displaying age between 13 and 18.");
+            foreach (var items in persons)
+            {
+                Console.WriteLine("SSN :" + items.SSN);
+                Console.WriteLine("Name :" + items.Name);
+                Console.WriteLine("Address :" + items.Address);
                 Console.WriteLine("Age :" + items.Age+"\n");
             }
         }
@@ -49,7 +61,7 @@ namespace PersonDataManagement
         {
             while (Choice != 10)
             {
-                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n10. for Exit\n");
+                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n10. for Exit\n");
                 Console.WriteLine("Enter Your choice");
                 Choice = Convert.ToInt16(Console.ReadLine());
                 switch (Choice)
@@ -62,6 +74,9 @@ namespace PersonDataManagement
                         break;
                     case 3:
                         DisplayTopTwoBelow60(list);
+                        break;
+                    case 4:
+                        DisplayAgeBetween13And18(list);
                         break;
                     default:
                         Console.WriteLine("Oops you enter wrong input.. try again...");
