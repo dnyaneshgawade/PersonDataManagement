@@ -84,11 +84,26 @@ namespace PersonDataManagement
                 Console.WriteLine("Age :" + items.Age + "\n");
             }
         }
+        public void Remove(List<Person> list)
+        {
+            Console.WriteLine("Enter a Person name:");
+            string name = Console.ReadLine();
+            var data = list.Where(x => x.Name.Equals(name));
+            if (data==null)
+            {
+                Console.WriteLine("Name is not present in list");
+            }
+            foreach (var item in data.ToArray())
+            {
+                list.Remove(item);
+            }
+             
+        }
         public void DataManagement()
         {
             while (Choice != 10)
             {
-                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n5. for Average Age\n6. for checking person present or not in list\n7 for Skip records below 60 age\n10. for Exit\n");
+                Console.WriteLine("\n1. for inserting record\n2. for display the record\n3. for display top two records below 60\n4. for Display records of age between 13 and 16\n5. for Average Age\n6. for checking person present or not in list\n7 for Skip records below 60 age\n8. for Remove the record\n10. for Exit\n");
                 Console.WriteLine("Enter Your choice");
                 Choice = Convert.ToInt16(Console.ReadLine());
                 switch (Choice)
@@ -113,6 +128,9 @@ namespace PersonDataManagement
                         break;
                     case 7:
                         SkipBelow60(list);
+                        break;
+                    case 8:
+                        Remove(list);
                         break;
                     default:
                         Console.WriteLine("Oops you enter wrong input.. try again...");
